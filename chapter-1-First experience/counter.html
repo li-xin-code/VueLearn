@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<boby>
+  <div id="app">
+    <h2>current counter: {{counter}}</h2>
+    <button v-on:click="counter++">+</button>
+    <button @click="counter--">-</button>
+    <hr/>
+    <button v-on:click="increment">+</button>
+    <button @click="decrement">-</button>
+  </div>
+</boby>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      counter: 0
+    },
+    methods: {
+      increment: function(){
+				if (this.counter < 100)
+				  this.counter++;
+      },
+      decrement: function(){
+				if (this.counter > 0)
+					this.counter--;
+			},
+		},		
+		beforeCreate: function() {
+			console.log("beforCreate");
+		},
+		created: function() {
+			console.log("created");
+		},
+		mounted: function() {
+			console.log("mounted");
+		}
+  });
+</script>
+</html>

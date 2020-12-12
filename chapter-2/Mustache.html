@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<boby>
+  <div id="app">
+    <h2>{{message}} :)</h2>
+    <h2>{{firstNmae + ' ' + lastNmae}}</h2>
+    <h2>{{firstNmae}} {{lastNmae}}</h2>
+  </div>
+</boby>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !",
+      firstNmae: "kobe",
+      lastNmae: "bryant"
+    }
+  });
+</script>
+</html>

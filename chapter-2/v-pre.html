@@ -5,16 +5,17 @@
   <title>Title</title>
 </head>
 <boby>
-
-  <div id="app">{{message}}</div>
-
+  <div id="app">
+    <h2>{{message}}</h2>
+    <h2 v-pre>{{message}}</h2>
+  </div>
 </boby>
 <script src="../js/vue.js"></script>
 <script>
   const app = new Vue({
     el: '#app',
     data: {
-      message: "Hello Vue !" 
+      message: "Hello Vue !",
     }
   });
 </script>

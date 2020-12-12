@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<boby>
+  <div id="app">
+		<span>{{list}}</span> <hr/>
+		<span>{{list[0]}}</span> <hr/>
+    <ul>
+			<li v-for="item in list">{{item}}</li>
+    </ul>
+  </div>
+</boby>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !" ,
+      list: ["ele_0","ele_1","ele_2"]
+    }
+  });
+</script>
+</html>

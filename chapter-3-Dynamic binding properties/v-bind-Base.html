@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<boby>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <img v-bind:src="img_src" alt="" width="30" height="30">
+    <!-- 语法糖写法 -->
+    <a :href="a_href">友情链接</a>
+  </div>
+</boby>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !",
+      img_src: "https://cn.vuejs.org/images/logo.png",
+      a_href: "https://www.baidu.com"
+    }
+  });
+</script>
+</html>
