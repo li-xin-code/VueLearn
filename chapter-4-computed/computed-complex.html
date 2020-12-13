@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<boby>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <h2>{{totalPrice}}</h2>
+  </div>
+</boby>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !",
+      books: [
+        {id: 001, naem: 'book-1', price: 20},
+        {id: 002, naem: 'book-2', price: 30},
+        {id: 003, naem: 'book-3', price: 40},
+        {id: 004, naem: 'book-4', price: 50},
+      ],
+    },
+    computed: {
+      totalPrice: function(){
+        let result = 0;
+        for (let item of this.books) {
+          result += item.price;
+        }
+        return result;
+      }
+    }
+  });
+</script>
+</html>
