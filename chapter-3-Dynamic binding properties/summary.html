@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .red {
+      color: red;
+    }
+    .cursor {
+      cursor: default;
+    }
+  </style>
+</head>
+<boby>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <ul>
+      <li class="cursor" v-for="(el, index) in list" 
+        :class="{red: index==red}" @click="red = index">
+          {{el}}
+      </li>
+    </ul>
+  </div>
+</boby>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !",
+      list: ['el0','el1','el2','el3'],
+      red: 0,
+    }
+  });
+</script>
+</html>
