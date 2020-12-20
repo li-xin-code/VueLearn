@@ -18,7 +18,7 @@
     <ul>
       <li class="cursor" v-for="(el, index) in list" 
         :class="{red: index==red}" @click="red = index">
-          {{el}}
+          {{toStr(el)}}
       </li>
     </ul>
   </div>
@@ -29,8 +29,13 @@
     el: '#app',
     data: {
       message: "Hello Vue !",
-      list: ['el0','el1','el2','el3'],
+      list: ['A','B','C','D'],
       red: 0,
+    },
+    methods: {
+      toStr: function (arg) {
+        return "el:" + arg;
+      }
     }
   });
 </script>
