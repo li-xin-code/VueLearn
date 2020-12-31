@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="app">
+    <h2 v-if="isShow" >{{message}}</h2>
+    <button @click="isShow = !isShow" >
+      <span v-if="isShow">off</span>
+      <span v-if="!isShow">on</span>
+    </button>
+    <button @click="isShow = !isShow" v-if="!isShow">on</button>
+    <button @click="isShow = !isShow" v-else>off</button>
+    <hr>
+    <span v-if="score>=90">A</span>
+    <span v-else-if="score>=80">B</span>
+    <span v-else-if="score>=60">C</span>
+    <span v-else>D</span>
+    <input v-model="score" type="number">
+    <hr>
+    <span v-if="isAccount">
+      <label for="Account">Account:</label>
+      <input type="text" id="Account" placeholder="Account" key="Account">
+    </span>
+    <span v-else>
+      <label for="Email">Email:</label>
+      <input type="text" id="Email" placeholder="Email" key="Email">
+    </span>
+    <button @click="isAccount = !isAccount">switch</button>
+  </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !",
+      isShow: true,
+      score: 90,
+      isAccount: true,
+      // isEmail: !isAccount
+    }
+  });
+</script>
+</html>

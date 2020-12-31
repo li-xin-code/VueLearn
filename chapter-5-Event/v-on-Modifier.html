@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<boby>
+  <!-- 
+    修饰符
+      .stop 阻止事件冒泡
+      .prevent 阻止默认事件
+      {keyCode|keyAlias} 纸当事件是从特定键触发时才回调。(键码或键名)
+      .native 监听组件根元素的原生事件
+      .once 只触发一次
+   -->
+  <div id="app">
+    <h2>{{message}}</h2>
+    <!-- .stop -->
+    <div @click="div_click">
+      <button @click.stop="btn_click">btn</button>
+    </div>
+    <!-- .prevent -->
+    <form action="url">
+      <input type="submit" value="提交" @click.prevent="submit_click" />
+    </form>
+    <!-- 监听某个键 -->
+    <input type="text" @keyup.enter="keyup">
+
+    <button @click.once="click">once</button>
+  </div>
+</boby>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !"
+    },
+    methods: {
+      click() {console.log("click");},
+      div_click() {console.log("div click");},
+      btn_click() {console.log("btn click");},
+      submit_click() {console.log("submit");},
+      keyup() {
+        console.log("input end");
+      },
+    }
+  });
+</script>
+
+</html>

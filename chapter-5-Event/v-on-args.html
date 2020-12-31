@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<boby>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <button @click="btn1_click">btn1</button>
+    <button @click="btn2_click('aa')" >btn2_1</button>
+    <button @click="btn2_click" >btn2_2</button>
+    <button @click="btn3_click('a',$event)" >btn3</button>
+  </div>
+</boby>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !"
+    },
+    methods: {
+      btn1_click(){
+        console.log("btn1_click");
+      },
+      btn2_click(arg){
+        console.log("arg---->",arg);
+      },
+      btn3_click(a,event){
+        console.log("a---->",a);
+        console.log("event---->",event);
+      },
+    }
+  });
+</script>
+</html>

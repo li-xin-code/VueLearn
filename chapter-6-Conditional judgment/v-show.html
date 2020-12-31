@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="app">
+    <h2 v-show="isShow">{{message}}</h2>
+    <button @click="isShow = !isShow" >
+      <span v-if="isShow">off</span>
+      <span v-if="!isShow">on</span>
+    </button>
+  </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !",
+      isShow: true
+    }
+  });
+</script>
+</html>
