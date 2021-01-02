@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <hr>
+    <ul>
+      <li v-for="item in list">{{item}}</li>
+    </ul>
+    <hr>
+    <ul>
+      <li v-for="(item, index) in list">{{ (index+1) + '.' + item}}</li>
+    </ul>
+    <hr>
+    响应式
+    <button @click="push">push</button>
+    <button @click="pop">pop</button>
+    <button @click="shift">shift</button>
+    <button @click="unshift">unshift</button>
+    <button @click="splice">splice</button>
+    <button @click="sort">sort</button>
+    <br>
+    非响应式 <button @click="change">change</button>
+  </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !",
+      list: ["A", "B", "C", "D"],
+    },
+    methods: {
+      push() {
+        this.list.push("E","F","G");
+      },
+      change() {
+        this.list[0] = 'B';
+      },
+      pop() {
+        this.list.pop();
+      },
+      shift(){this.list.shift()},
+      unshift(){this.list.unshift('A','B','C')},
+      splice(){this.list.splice(0, 3, 'A', 'B', 'C')},
+      sort(){this.list.sort()},
+    }
+  });
+</script>
+</html>
