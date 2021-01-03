@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <input type="text" v-model="message">
+    <hr>
+    <label for="male">
+      <input type="radio" name="gender" id="male" 
+      v-model="gender" value="male">男
+    </label>
+    <label for="female">
+      <input type="radio" name="gender" id="female"
+       v-model="gender" value="female">女
+    </label>
+    (以选择:
+    <span v-if="gender === 'male' ">男</span>
+    <span v-if="gender === 'female' ">女</span>)
+    <hr>
+    <label for="agreement">
+      <input type="checkbox" name="" id="agreement" v-model="isAgree">同意协议
+    </label>
+    (是否同意:<span>{{isAgree?'是':'否'}}</span>)
+    <button :disabled="!isAgree">下一步</button>
+    <hr>
+    <div>
+      <label for="travel">
+        <input type="checkbox" name="hobby" id="travel" 
+        value="travel" v-model="hobbies">
+        旅行
+      </label>
+      <label for="read">
+        <input type="checkbox" name="hobby" id="read"
+        value="read" v-model="hobbies">
+        看书
+      </label>
+      <label for="game">
+        <input type="checkbox" name="hobby" id="game"
+        value="game" v-model="hobbies">
+        游戏
+      </label>
+      <label for="shopping">
+        <input type="checkbox" name="hobby" id="shopping"
+        value="shopping" v-model="hobbies">
+        逛街
+      </label>
+      <br>
+      爱好列表:
+      <span v-for="(hobby,index) in hobbies">
+        <span v-if="index != 0">,</span>
+        {{hobby | hobbyShow}}
+      </span>
+    </div>
+    <hr>
+    <select name="education" id="education" v-model="education">
+      <option value="高中">高中</option>
+      <option value="大专">大专</option>
+      <option value="本科">本科</option>
+      <option value="研究生">研究生</option>
+    </select>
+    <span>学历：{{education}}</span>
+    <hr>
+    <select name="fruits" id="fruits" v-model="fruits" multiple>
+      <option value="苹果">苹果</option>
+      <option value="香蕉">香蕉</option>
+      <option value="葡萄">葡萄</option>
+    </select>
+    <span>{{fruits}}</span>
+  </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !",
+      gender: "male",
+      isAgree: false,
+      hobbies: [],
+      education: "高中",
+      fruits: [],
+    },
+    filters: {
+      hobbyShow(hobby){
+        const hobbiesMap = new Map([
+          ['travel', "旅行"],
+          ['read', "看书"],
+          ['game', "游戏"],
+          ['shopping',"逛街"],
+        ]);
+        return hobbiesMap.get(hobby);
+      }
+    },
+  });
+</script>
+</html>

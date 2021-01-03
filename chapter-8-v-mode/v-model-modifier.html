@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <!-- lazy -->
+    <label for="message">
+      message:<input type="text" id="message"
+        v-model.lazy.trim="message">
+    </label>
+    <br>
+    <!-- number -->
+    <label for="age">
+      年龄:<input type="number" id="age" v-model.number="age">
+    </label>
+    <span>{{age}}---{{typeof age}}</span>
+    <br>
+
+  </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !",
+      age: 0,
+    }
+  });
+</script>
+</html>
