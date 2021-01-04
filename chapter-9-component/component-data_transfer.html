@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>父子组件通信</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <cpn :clist="list"></cpn>
+    <cpn :clist="list" cmsg="你好"></cpn>
+  </div>
+  <template id="cpn">
+    <div>
+      <h2>{{cmsg}}</h2>
+      <span v-for="item in clist">{{item}}</span>
+    </div>
+  </template>
+</body>
+<script src="../js/vue.js"></script>
+<script type="text/javascript">
+  const cpn = {
+    template: "#cpn",
+    props: {
+      // clist: Array,
+      clist: {
+        type: Array,
+        default() {
+          return ['default'];
+        },
+        // 缺失触发报错 Missing required prop: "clist"
+        required: true,
+      },
+      cmsg: {
+        type: String,
+        default: "cpn",
+        required: false,
+        validator(val) {
+          // 数据验证
+          // 报错 custom validator check failed for prop "cmsg".
+          return val.length < 4;
+        }
+      }
+    },
+    data(){
+      return {};
+    },
+  }
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !",
+      list: ["A","B","C"],
+    },
+    components: {
+      cpn,
+    }
+  });
+</script>
+</html>

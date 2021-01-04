@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <global></global>
+    <local></local>
+  </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+  // global
+  Vue.component('global',{
+    template: `
+    <div>
+      <h2>global-component</h2>
+    </div>
+    `,
+  });
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !"
+    },
+    components: {
+      'local': {
+        template: `
+        <div>
+          <h2>local-component</h2>
+        </div>
+        `,
+      }
+    }
+  });
+</script>
+</html>
