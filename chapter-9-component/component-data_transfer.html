@@ -8,12 +8,22 @@
   <div id="app">
     <h2>{{message}}</h2>
     <cpn :clist="list"></cpn>
-    <cpn :clist="list" cmsg="你好"></cpn>
+    <cpn :clist="list" c-msg="你好"></cpn>
+    <hr>
+    <cpnm @submit="submit"></cpnm>
   </div>
   <template id="cpn">
     <div>
-      <h2>{{cmsg}}</h2>
+      <h2>{{cMsg}}</h2>
       <span v-for="item in clist">{{item}}</span>
+    </div>
+  </template>
+  <template id="cpnm">
+    <div>
+      <label for="message">
+        数据：<input type="text" v-model="message" id="message">
+      </label>
+      <button @click="submit">submit</button>
     </div>
   </template>
 </body>
@@ -31,7 +41,7 @@
         // 缺失触发报错 Missing required prop: "clist"
         required: true,
       },
-      cmsg: {
+      cMsg: {
         type: String,
         default: "cpn",
         required: false,
@@ -46,6 +56,19 @@
       return {};
     },
   }
+  const cpnm = {
+    template: "#cpnm",
+    data(){
+      return {
+        message: "message",
+      }
+    },
+    methods: {
+      submit(){
+        this.$emit("submit",this.message);
+      }
+    },
+  }
   const app = new Vue({
     el: '#app',
     data: {
@@ -54,7 +77,13 @@
     },
     components: {
       cpn,
-    }
+      cpnm,
+    },
+    methods: {
+      submit(msg){
+        this.message = msg;
+      }
+    },
   });
 </script>
 </html>
