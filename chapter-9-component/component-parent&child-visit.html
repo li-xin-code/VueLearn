@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>父子组件访问</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <cpn ref="a" msg="A-child"></cpn>
+    <cpn ref="b" msg="B-child"></cpn>
+    <cpn ref="c" msg="C-child"></cpn>
+    <button @click="btnClick">按钮</button>
+    <button @click="btnClickA">A</button>
+    <button @click="btnClickB">B</button>
+    <button @click="btnClickC">C</button>
+  </div>
+  <template id="cpn">
+    <div>
+      <h2>{{msg}}</h2>
+      <c_cpn></c_cpn>
+    </div>
+  </template>
+  <template id="c-cpn">
+    <div>
+      <b>子子组件</b>
+      <button @click="btnClick">按钮</button>
+    </div>
+  </template>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+  const c_cpn = {
+    template: "#c-cpn",
+    methods: {
+      btnClick(){
+        console.log(this.$parent.msg);
+        console.log(this.$root.message);
+      },
+    }
+  };
+  const cpn = {
+    template: "#cpn",
+    props: {
+      msg: {
+        type: String,
+        default() {
+          return "child";
+        },
+      },
+    },
+    data(){
+      return {
+        message: "I am child !",
+      };
+    },
+    methods: {
+      showMessage(){
+        console.log("showMessage");
+      },
+      
+    },
+    components: {
+      c_cpn,
+    }
+  };
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !"
+    },
+    methods:{
+      btnClick(){
+        for(let child of this.$children){
+          child.showMessage();
+          console.log(child.message);
+          console.log(child.msg);
+        }
+      },
+      btnClickA(){
+        console.log(this.$refs.a.msg);
+      },
+      btnClickB(){
+        console.log(this.$refs.b.msg);
+      },
+      btnClickC(){
+        console.log(this.$refs.c.msg);
+      },
+    },
+    components: {
+      cpn,
+    },
+  });
+</script>
+</html>

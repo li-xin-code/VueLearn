@@ -68,6 +68,12 @@
         this.$emit("submit",this.message);
       }
     },
+    watch: {
+      message(newVla, oldVal){
+        // message发生改变则触发
+        this.$emit("submit",this.message);
+      }
+    }
   }
   const app = new Vue({
     el: '#app',

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>作用域插槽</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <cpn></cpn>
+    <cpn>
+      <template slot-scope="slot">
+        <span>{{slot.data.join(',')}}</span>
+      </template>
+    </cpn>
+  </div>
+  <template id="cpn">
+    <div>
+      <slot :data="languages">
+        <ul v-for="language in languages">
+          <li>{{language}}</li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+  const cpn = {
+    template: "#cpn",
+    data(){
+      return {
+        languages: ["Java","Python","C++","JavaScript"],
+      };
+    },
+  };
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !"
+    },
+    components: {
+      cpn,
+    }
+  });
+</script>
+</html>

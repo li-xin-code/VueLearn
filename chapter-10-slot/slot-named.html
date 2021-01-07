@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>具名插槽</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <cpn>
+      <span slot="left"><=</span>
+      <span slot="center">message</span>
+      <span slot="right">=></span>
+    </cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <b>cpn</b>
+      <slot name="left">
+        <span>左</span>
+      </slot>
+      <slot name="center">
+        <span>中</span>
+      </slot>
+      <slot name="right">
+        <span>右</span>
+      </slot>
+    </div>
+  </template>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+  const cpn = {
+    template: "#cpn",
+  };
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !"
+    },
+    components: {
+      cpn,
+    }
+  });
+</script>
+
+</html>

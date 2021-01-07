@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>插槽基本使用</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <cpn>
+      <button>按钮</button>
+    </cpn>
+    <cpn>
+      <a href="#">链接</a>
+    </cpn>
+    <cpn></cpn>
+  </div>
+  <template id="cpn">
+    <div>
+      <b>cpn</b>
+      <slot>
+        <span>defualt</span>
+      </slot>
+    </div>
+  </template>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+  const cpn = {
+    template: "#cpn",
+  };
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "Hello Vue !"
+    },
+    components: {
+      cpn,
+    }
+  });
+</script>
+
+</html>
