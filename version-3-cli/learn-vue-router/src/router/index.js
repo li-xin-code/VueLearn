@@ -7,6 +7,7 @@ import About from '@/components/About'
 const User = () => import('@/components/User')
 const HomeNews = () => import('@/components/HomeNews')
 const HomeMessages = () => import('@/components/HomeMessages')
+const Profile = () => import('@/components/Profile')
 
 Vue.use(Router)
 const routes = [
@@ -17,6 +18,9 @@ const routes = [
   {
     path: "/home",
     component: Home,
+    meta: {
+      title: "首页"
+    },
     children: [
       {
         path: "/",
@@ -35,19 +39,40 @@ const routes = [
   {
     path: "/user/:userId",
     name: "user",
-    component: User
+    component: User,
+    meta: {
+      title: "用户"
+    }
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: Profile,
+    meta: {
+      title: "个人信息"
+    }
   },
   {
     path: "/about",
-    component: About
+    component: About,
+    meta: {
+      title: "关于"
+    }
   }
 ]
 
-export default new Router({
+const router = new Router({
   routes,
   mode: "history",
   linkActiveClass: 'active',
 })
+router.beforeEach((to, from, next) => {
+  document.title = to.matched[0].meta.title
+  next()
+})
+
+
+export default router
 
 
 // 避免重复路由跳转时报错
