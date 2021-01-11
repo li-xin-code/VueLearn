@@ -4,6 +4,8 @@
     <h2>{{$store.state.counter}}</h2>
     <button @click="increment">+</button>
     <button @click="decrement">-</button>
+    <button @click="refresh">refresh</button>
+
     <hello-vue-x></hello-vue-x>
   </div>
 </template>
@@ -27,6 +29,10 @@ export default {
     },
     decrement() {
       this.$store.commit('decrement')
+    },
+    refresh() {
+      this.$store.dispatch('refresh', 20)
+      .then(res => console.log(res))
     }
   }
 }
